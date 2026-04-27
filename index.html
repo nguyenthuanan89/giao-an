@@ -647,6 +647,86 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* ── ZALO FLOAT ── */
+  #zalo-float {
+    position: fixed;
+    bottom: 28px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+  #zalo-btn {
+    width: 56px; height: 56px;
+    background: #0068ff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(0,104,255,0.55);
+    transition: transform 0.25s, box-shadow 0.25s;
+    animation: zalo-ring 2.5s infinite;
+    position: relative;
+  }
+  #zalo-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 26px rgba(0,104,255,0.75);
+  }
+  #zalo-btn svg { width: 30px; height: 30px; }
+  @keyframes zalo-ring {
+    0%   { box-shadow: 0 0 0 0   rgba(0,104,255,0.55); }
+    70%  { box-shadow: 0 0 0 14px rgba(0,104,255,0);   }
+    100% { box-shadow: 0 0 0 0   rgba(0,104,255,0);    }
+  }
+  #zalo-badge {
+    position: absolute;
+    top: 0; right: 0;
+    width: 17px; height: 17px;
+    background: #e74c3c;
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #zalo-label {
+    background: rgba(10,10,10,0.88);
+    border: 1px solid rgba(0,104,255,0.35);
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 4px 11px;
+    border-radius: 100px;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+  }
+  #zalo-float:hover #zalo-label { opacity: 1; transform: translateY(0); }
+
+  /* ── ZALO SUCCESS BTN ── */
+  .btn-zalo {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: #0068ff;
+    color: #fff;
+    text-decoration: none;
+    padding: 11px 22px;
+    border-radius: 100px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-top: 18px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-zalo:hover { background: #0055cc; transform: translateY(-2px); }
+  .btn-zalo svg { width: 20px; height: 20px; flex-shrink: 0; }
+
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -926,8 +1006,11 @@
       <div class="success-msg" id="success-msg">
         <div class="success-icon">✅</div>
         <h3>Đơn hàng đã được ghi nhận!</h3>
-        <p>Chúng tôi sẽ xác nhận thanh toán và gửi link tải về email của thầy/cô trong thời gian sớm nhất.<br/><br/>
-        Nếu cần hỗ trợ, vui lòng liên hệ Zalo: <strong style="color:var(--gold-light)">0939 887 937</strong></p>
+        <p>Chúng tôi sẽ xác nhận thanh toán và gửi link tải về email của thầy/cô trong thời gian sớm nhất.</p>
+        <a href="https://zalo.me/0939887937" target="_blank" class="btn-zalo">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="48" height="48" rx="24" fill="#0068FF"/><path d="M24 10C16.268 10 10 15.82 10 23c0 4.02 1.98 7.62 5.1 10.08L14 38l5.22-2.58C20.76 35.8 22.36 36 24 36c7.732 0 14-5.82 14-13S31.732 10 24 10z" fill="white"/><path d="M18 21h12M18 25h8" stroke="#0068FF" stroke-width="2" stroke-linecap="round"/></svg>
+          Nhắn Zalo để được hỗ trợ ngay
+        </a>
       </div>
 
       <p class="form-note">Bằng cách gửi đơn, thầy/cô đồng ý với <a href="#">điều khoản sử dụng</a>. File chỉ dùng cho cá nhân, không chia sẻ lại.</p>
@@ -937,8 +1020,22 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 <strong style="color:var(--gold-light)">Giáo Án Tích Hợp Năng Lực Số</strong> &nbsp;·&nbsp; Hỗ trợ: <a href="tel:0939887937">0939 887 937</a> &nbsp;·&nbsp; <a href="mailto:nguyenthuanan89@gmail.com">nguyenthuanan89@gmail.com</a></p>
+  <p>© 2026 <strong style="color:var(--gold-light)">Giáo Án Tích Hợp Năng Lực Số</strong>
+  &nbsp;·&nbsp; <a href="https://zalo.me/0939887937" target="_blank" style="color:#4d9fff">Zalo: 0939 887 937</a>
+  &nbsp;·&nbsp; <a href="mailto:nguyenthuanan89@gmail.com">nguyenthuanan89@gmail.com</a></p>
 </footer>
+
+<!-- ZALO NỔI -->
+<div id="zalo-float">
+  <a id="zalo-btn" href="https://zalo.me/0939887937" target="_blank" aria-label="Chat Zalo">
+    <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M24 4C12.954 4 4 12.506 4 23c0 5.6 2.52 10.64 6.54 14.12L9 43l6.54-3.24C17.82 40.54 20.86 41 24 41c11.046 0 20-8.506 20-18S35.046 4 24 4z" fill="white"/>
+      <path d="M15 21.5h18M15 27.5h12" stroke="#0068FF" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+    <div id="zalo-badge">1</div>
+  </a>
+  <div id="zalo-label">💬 Nhắn Zalo hỗ trợ</div>
+</div>
 
 <script>
 // ══════════════════════════════════════════════════
